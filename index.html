@@ -56,38 +56,20 @@
 
                     <!-- Video URL Input Form -->
                     <div class="mt-8 sm:mt-12">
-                        <form id="clipForm" class="space-y-4" onsubmit="return false;">
-                            <div class="flex flex-col space-y-2">
-                                <label for="videoUrl" class="text-sm font-medium text-gray-700">Video URL</label>
-                                <div class="flex">
-                                    <input type="url" id="videoUrl" name="videoUrl" required
-                                        class="flex-1 block w-full px-4 py-3 rounded-l-lg border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                                        placeholder="Paste your video URL here">
-                                    <button onclick="handleSubmit(event)"
-                                        class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-r-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        <i class="fas fa-arrow-right mr-2"></i>
-                                        Proceed
-                                    </button>
-                                </div>
+                        <div class="flex flex-col space-y-2">
+                            <label for="videoUrl" class="text-sm font-medium text-gray-700">Video URL</label>
+                            <div class="flex">
+                                <input type="url" id="videoUrl" name="videoUrl" required
+                                    class="flex-1 block w-full px-4 py-3 rounded-l-lg border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                                    placeholder="Paste your video URL here">
+                                <button id="proceedBtn"
+                                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-r-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <i class="fas fa-arrow-right mr-2"></i>
+                                    Proceed
+                                </button>
                             </div>
-                        </form>
+                        </div>
                     </div>
-
-                    <script>
-                        function handleSubmit(e) {
-                            e.preventDefault();
-                            const videoUrl = document.getElementById('videoUrl').value;
-                            
-                            if (!videoUrl) {
-                                alert('Please enter a video URL');
-                                return;
-                            }
-
-                            // Store the URL in localStorage and redirect to clipper page
-                            localStorage.setItem('currentVideoUrl', videoUrl);
-                            window.location.href = 'clipper.html';
-                        }
-                    </script>
 
                     <!-- Features Section -->
                     <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -146,6 +128,16 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('proceedBtn').addEventListener('click', function() {
+            const videoUrl = document.getElementById('videoUrl').value;
+            if (!videoUrl) {
+                alert('Please enter a video URL');
+                return;
+            }
+            localStorage.setItem('currentVideoUrl', videoUrl);
+            window.location.href = 'clipper.html';
+        });
+    </script>
 </body>
 </html>
