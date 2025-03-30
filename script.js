@@ -15,15 +15,16 @@ function saveToHistory(clipData) {
     localStorage.setItem('clipHistory', JSON.stringify(history));
 }
 
-// Handle form submission on index.html
+// Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Handle form submission on index.html
     const form = document.getElementById('clipForm');
     if (form) {
-        form.addEventListener('submit', (e) => {
+        const submitButton = form.querySelector('button');
+        submitButton.addEventListener('click', (e) => {
             e.preventDefault();
             const videoUrl = document.getElementById('videoUrl').value;
             
-            // Basic URL validation
             if (!videoUrl) {
                 alert('Please enter a video URL');
                 return;
